@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-"""
+r"""
 PyInstaller Extractor v1.8 (Supports pyinstaller 3.2, 3.1, 3.0, 2.1, 2.0)
 Author : Extreme Coders
 E-mail : extremecoders(at)hotmail(dot)com
@@ -92,7 +92,7 @@ import struct
 import marshal
 import zlib
 import sys
-import imp
+import importlib.util
 import types
 from uuid import uuid4 as uniquename
 
@@ -274,7 +274,7 @@ class PyInstArchive:
 
             pycHeader = f.read(4) # Python magic value
 
-            if imp.get_magic() != pycHeader:
+            if importlib.util.MAGIC_NUMBER != pycHeader:
                 print('[!] Warning: The script is running in a different python version than the one used to build the executable')
                 print('    Run this script in Python{0} to prevent extraction errors(if any) during unmarshalling'.format(self.pyver))
 
